@@ -47,7 +47,25 @@ public class PlayerMovement : MonoBehaviour
                 moving = true;
             }
         }
-        spriteRenderer.sprite = moving ? movementSprite : idleSprite;
+
+        if(Input.GetKey(KeyCode.A))
+        {
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
+        }
+        else if(Input.GetKey(KeyCode.D))
+        {
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
+
+        //Fuck you Ben
+        if(moving)
+        {
+            spriteRenderer.sprite = movementSprite;
+        }
+        else
+        {
+            spriteRenderer.sprite = idleSprite;
+        }
     }
 
     // Update is called once per frame
