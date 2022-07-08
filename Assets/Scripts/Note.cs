@@ -6,7 +6,7 @@ using UnityEngine;
 public struct Note
 {
     public int midi;
-    public float time;
+    public double time;
     
     public override string ToString() => $"<Note: midi({midi}), time({time})>";
 }

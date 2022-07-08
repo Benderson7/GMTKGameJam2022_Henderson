@@ -7,7 +7,7 @@ using TMPro;
 public class TimeClock : MonoBehaviour
 {
     public TMP_Text timeClock;
-    public bool started  { get; private set; }
+    public bool started { get; private set; } = false;
 
     DateTime timeStarted;
 
@@ -22,7 +22,7 @@ public class TimeClock : MonoBehaviour
         }
     }
 
-    public void Start()
+    public void StartClock()
     {
         timeStarted = DateTime.Now;
         started = true;

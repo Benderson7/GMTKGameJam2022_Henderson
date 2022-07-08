@@ -5,10 +5,21 @@ using UnityEngine;
 public class SongManager : MonoBehaviour
 {
     public TextAsset jsonFile;
-    private NoteMap? noteMap;
+    public double halfBufferRange = 0.05;
+    private List<Note> notes;
     public Note[] GetCurrentNotes(double time)
     {
-        noteMap = noteMap ?? NoteMap.CreateFromJSON(jsonFile.text);
-        return new Note[0];
+        notes = notes ?? new List<Note>(NoteMap.CreateFromJSON(jsonFile.text).notes);
+        return notes.FindAll(note => CloseEnough(note.time, time)).ToArray();
+    }
+
+    private bool CloseEnough(double noteTime, double time)
+    {
+        bool closeEnough = time < noteTime + halfBufferRange && time > noteTime - halfBufferRange;
+        if (closeEnough)
+        {
+            Debug.Log($"Note's Time Value: {noteTime}\n Key Pressed At: {time}");  
+        }
+        return closeEnough;
     }
 }

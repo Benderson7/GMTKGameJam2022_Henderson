@@ -11,16 +11,15 @@ public class GameplayManager : MonoBehaviour
     void Update()
     {
         if (Input.anyKeyDown) {
-            if (Input.GetKey(KeyCode.Space))
-            {
-                timeClock.Start();
-            }
             if (timeClock.started)
             {
                 double curTime = timeClock.timeElapsed.TotalSeconds;
-                Note[] notes = SongManager.GetCurrentNotes(curTime);
+                Note[] notes = songManager.GetCurrentNotes(curTime);
                 ActionManager.Action hit = ActionManager.Hit(notes);
                 scoreboardManager.UpdateScoreboard(hit);
+            } else if (Input.GetKey(KeyCode.Space))
+            {
+                timeClock.StartClock();
             }
         }
     }
