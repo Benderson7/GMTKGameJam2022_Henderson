@@ -7,27 +7,24 @@ using TMPro;
 public class TimeClock : MonoBehaviour
 {
     public TMP_Text timeClock;
-    bool started;
+    public bool started  { get; private set; }
 
     DateTime timeStarted;
 
-    // Update is called once per frame
+    public TimeSpan timeElapsed { get; private set; }
+
     void Update()
     {
         if (started)
         {
-            timeClock.text = DateTime.Now.Subtract(timeStarted).ToString("mm\\:ss\\:ff");
+            timeElapsed = DateTime.Now.Subtract(timeStarted);
+            timeClock.text = timeElapsed.ToString("mm\\:ss\\:ff");
         }
-        else
-        {
-            if (Input.anyKey)
-            {
-                if (Input.GetKey(KeyCode.Space))
-                {
-                    timeStarted = DateTime.Now;
-                    started = true;
-                }
-            }
-        }
+    }
+
+    public void Start()
+    {
+        timeStarted = DateTime.Now;
+        started = true;
     }
 }

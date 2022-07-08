@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ActionManager : MonoBehaviour
 {
@@ -11,16 +12,18 @@ public class ActionManager : MonoBehaviour
         OTHER
     }
 
-    public static Action Hit()
+    public static Action Hit(Note[] correctNotes)
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        Action hit = Action.OTHER;
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            return Action.HIT;
+            hit = Array.Exists(correctNotes, note => note.midi == 64) ? Action.HIT : Action.MISS;
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.J) && hit != Action.MISS)
         {
-            return Action.MISS;
+            hit = Array.Exists(correctNotes, note => note.midi == 69) ? Action.HIT : Action.MISS;
         }
-        return Action.OTHER;
+        Debug.Log(hit);
+        return hit;
     }
 }
