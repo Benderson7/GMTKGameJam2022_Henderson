@@ -7,7 +7,7 @@ public class GameplayManager : MonoBehaviour
     public ScoreboardManager scoreboardManager;
     public SongManager songManager;
     public TimeClock timeClock;
-
+    public NoteBlock noteBlock; // Temp
     void Update()
     {
         if (Input.anyKeyDown) {
@@ -20,6 +20,11 @@ public class GameplayManager : MonoBehaviour
             } else if (Input.GetKey(KeyCode.Space))
             {
                 timeClock.StartClock();
+            }
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                Debug.Log("Note Block Created.");
+                Instantiate(noteBlock, new Vector2(0, 0), Quaternion.identity);
             }
         }
     }

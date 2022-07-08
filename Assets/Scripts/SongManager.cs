@@ -5,7 +5,7 @@ using UnityEngine;
 public class SongManager : MonoBehaviour
 {
     public TextAsset jsonFile;
-    public double halfBufferRange = 0.05;
+    public double halfBufferRange;
     private List<Note> notes;
     public Note[] GetCurrentNotes(double time)
     {

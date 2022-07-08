@@ -491,6 +491,7 @@ MonoBehaviour:
   scoreboardManager: {fileID: 1502055447}
   songManager: {fileID: 1101323501}
   timeClock: {fileID: 93202759}
+  noteBlock: {fileID: -8111903673992792785, guid: 587a2e353e6cc6e459d9e0366ff71d1b, type: 3}
 --- !u!4 &1085760414
 Transform:
   m_ObjectHideFlags: 0
