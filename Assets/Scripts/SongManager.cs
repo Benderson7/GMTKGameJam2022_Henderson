@@ -2,16 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class SongManager : MonoBehaviour
 {
     public TextAsset jsonFile;
-    public double halfBufferRange;
     public double doublePrecision;
-    public Note[] notes;
     public NoteBlock noteBlock;
-    public TimeClock timeClock;
     public double preHitSpawnTime;
+    public TimeClock timeClock;
+    private Note[] notes;
+    private List<Note> spawnedNotes = new();
+    private static readonly Dictionary<int, KeyCode> midiToKeyCodes = new()
+    {
+        { 64, KeyCode.F},
+        { 69, KeyCode.J}
+    };
+    private static readonly Dictionary<int, Vector2> midiToPositions = new()
+    {
+        { 64, new Vector2(-3.195f, 3.7f)},
+        { 69, new Vector2(3.315f, 3.7f)}
+    };
 
     void Start()
     {
@@ -20,57 +31,26 @@ public class SongManager : MonoBehaviour
         notes = map.notes;
     }
 
-    void Update()
+    public List<NoteBlock> SpawnBlocks(double timeElapsed)
     {
-        if (timeClock.started)
-        {
-
-            Note[] tempNotes = GetNotes(note => {return AlmostEqual(note.time, timeClock.timeElapsed.TotalSeconds - preHitSpawnTime) && !note.hasSpawned;});
-            //For all notes whose time it is to spawn
-            for(int i = 0; i < tempNotes.Length; i++)
-            {
-                Note note = tempNotes[i];
-
-                //Spawn left
-                if (note.midi == 64)
-                {
-                    NoteBlock block = Instantiate(noteBlock, new Vector2(-9.5f, 3.5f), Quaternion.identity);
-                    block.noteInfo = note;
-                }
-                //Spawn right
-                else if (note.midi == 69)
-                {
-                    NoteBlock block = Instantiate(noteBlock, new Vector2(9.5f, 3.5f), Quaternion.identity);
-                    block.noteInfo = note;
-                }
-
-                tempNotes[i].hasSpawned = true;
-            }
-        }
+        Note[] notesToSpawn = GetNotes(note => AlmostEqual(note.time - preHitSpawnTime, timeElapsed) && !spawnedNotes.Contains(note));
+        return notesToSpawn.Select(note => Spawn(note)).ToList();
     }
 
-    public bool CloseEnough(double noteTime, double time)
+    private NoteBlock Spawn(Note note)
     {
-        bool closeEnough = time < noteTime + halfBufferRange && time > noteTime - halfBufferRange;
-        if (closeEnough)
-        {
-            // Debug.Log($"Note's Time Value: {noteTime}\n Key Pressed At: {time}");  
-        }
-        return closeEnough;
+        noteBlock.keyCode = midiToKeyCodes[note.midi];
+        noteBlock.time = note.time;
+        spawnedNotes.Add(note);
+        return Instantiate(noteBlock, midiToPositions[note.midi], Quaternion.identity);
     }
 
     public Note[] GetNotes(Predicate<Note> predicate)
     {
-        notes = notes.Length > 0 ? notes : NoteMap.CreateFromJSON(jsonFile.text).notes;
         return Array.FindAll(notes, predicate);
     }
 
-    public NoteBlock[] GetNoteBlocks(Predicate<NoteBlock> predicate)
-    {
-        return Array.FindAll(GameObject.FindObjectsOfType<NoteBlock>(), predicate);
-    }
-
-    private bool AlmostEqual(double value1, double value2)
+    public bool AlmostEqual(double value1, double value2)
     {
         return Math.Abs(value1 - value2) < doublePrecision; 
     }

@@ -27,7 +27,7 @@ public class SanityManager : MonoBehaviour
         // }
         lastTimeFailed = 0;
         sanityMeter = meterStates.Count;
-        this.GetComponent<Image>().sprite = meterStates[meterStates.Count - 1];
+        this.GetComponent<SpriteRenderer>().sprite = meterStates[meterStates.Count - 1];
     }
 
     // Update is called once per frame
@@ -50,7 +50,7 @@ public class SanityManager : MonoBehaviour
     {
         sanityMeter = Mathf.Floor(sanityMeter - 1);
         int index = (int)Mathf.Floor(sanityMeter) - 1 > 0 ? (int)Mathf.Floor(sanityMeter) - 1 : 0;
-        this.GetComponent<Image>().sprite = meterStates[index];
+        this.GetComponent<SpriteRenderer>().sprite = meterStates[index];
     }
 
     public bool Insane()
