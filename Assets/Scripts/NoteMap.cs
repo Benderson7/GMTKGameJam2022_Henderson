@@ -8,6 +8,9 @@ public struct NoteMap
 {
     public Note[] notes;
 
+    public double duration;
+
+    
     public static NoteMap CreateFromJSON(string jsonString)
     {
         return JsonUtility.FromJson<NoteMap>(jsonString);
