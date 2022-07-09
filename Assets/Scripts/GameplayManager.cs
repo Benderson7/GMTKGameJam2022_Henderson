@@ -14,7 +14,7 @@ public class GameplayManager : MonoBehaviour
             if (timeClock.started)
             {
                 double curTime = timeClock.timeElapsed.TotalSeconds;
-                Note[] notes = songManager.GetNotes(note => songManager.CloseEnough(note.time, curTime));
+                NoteBlock[] notes = songManager.GetNoteBlocks(note => songManager.CloseEnough(note.noteInfo.time, curTime));
                 ActionManager.Action hit = ActionManager.Hit(notes);
                 scoreboardManager.UpdateScoreboard(hit);
             } else if (Input.GetKey(KeyCode.Space))

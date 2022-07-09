@@ -8,7 +8,7 @@ public class SongManager : MonoBehaviour
     public TextAsset jsonFile;
     public double halfBufferRange;
     public double doublePrecision;
-    private List<Note> notes;
+    public Note[] notes;
     public NoteBlock noteBlock;
     public TimeClock timeClock;
     public double preHitSpawnTime;
@@ -17,16 +17,27 @@ public class SongManager : MonoBehaviour
     {
         if (timeClock.started)
         {
-            foreach (Note note in GetNotes(note => AlmostEqual(note.time, timeClock.timeElapsed.TotalSeconds - preHitSpawnTime)))
+
+            Note[] tempNotes = GetNotes(note => {return AlmostEqual(note.time, timeClock.timeElapsed.TotalSeconds - preHitSpawnTime) && !note.hasSpawned;});
+            //For all notes whose time it is to spawn
+            for(int i = 0; i < tempNotes.Length; i++)
             {
+                Note note = tempNotes[i];
+
+                //Spawn left
                 if (note.midi == 64)
                 {
-                    Instantiate(noteBlock, new Vector2(-9.5f, 3.5f), Quaternion.identity);
+                    NoteBlock block = Instantiate(noteBlock, new Vector2(-9.5f, 3.5f), Quaternion.identity);
+                    block.noteInfo = note;
                 }
+                //Spawn right
                 else if (note.midi == 69)
                 {
-                    Instantiate(noteBlock, new Vector2(9.5f, 3.5f), Quaternion.identity);
+                    NoteBlock block = Instantiate(noteBlock, new Vector2(9.5f, 3.5f), Quaternion.identity);
+                    block.noteInfo = note;
                 }
+
+                tempNotes[i].hasSpawned = true;
             }
         }
     }
@@ -43,8 +54,13 @@ public class SongManager : MonoBehaviour
 
     public Note[] GetNotes(Predicate<Note> predicate)
     {
-        notes = notes ?? new List<Note>(NoteMap.CreateFromJSON(jsonFile.text).notes);
-        return notes.FindAll(predicate).ToArray();
+        notes = notes.Length > 0 ? notes : NoteMap.CreateFromJSON(jsonFile.text).notes;
+        return Array.FindAll(notes, predicate);
+    }
+
+    public NoteBlock[] GetNoteBlocks(Predicate<NoteBlock> predicate)
+    {
+        return Array.FindAll(GameObject.FindObjectsOfType<NoteBlock>(), predicate);
     }
 
     private bool AlmostEqual(double value1, double value2)

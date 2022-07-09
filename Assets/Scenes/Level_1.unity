@@ -802,8 +802,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jsonFile: {fileID: 4900000, guid: 8896a6d3b0f5cb64ca87df6c1ad29336, type: 3}
-  halfBufferRange: 0.1
+  halfBufferRange: 0.2
   doublePrecision: 0.01
+  notes: []
   noteBlock: {fileID: -8111903673992792785, guid: 587a2e353e6cc6e459d9e0366ff71d1b, type: 3}
   timeClock: {fileID: 93202759}
   preHitSpawnTime: -1

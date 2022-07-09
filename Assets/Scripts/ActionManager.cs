@@ -12,16 +12,26 @@ public class ActionManager : MonoBehaviour
         OTHER
     }
 
-    public static Action Hit(Note[] correctNotes)
+    public static Action Hit(NoteBlock[] correctNotes)
     {
         Action hit = Action.OTHER;
         if (Input.GetKeyDown(KeyCode.F))
         {
-            hit = Array.Exists(correctNotes, note => note.midi == 64) ? Action.HIT : Action.MISS;
+            NoteBlock notes = Array.Find(correctNotes, note => note.noteInfo.midi == 64);
+            if(notes != null)
+            {
+                hit = Action.HIT;
+                Destroy(notes.transform.parent);
+            }
+            else
+            {
+                hit = Action.MISS;
+            }
+            //hit = Array.Exists(correctNotes, note => note.midi == 64) ? Action.HIT : Action.MISS;
         }
         if (Input.GetKeyDown(KeyCode.J) && hit != Action.MISS)
         {
-            hit = Array.Exists(correctNotes, note => note.midi == 69) ? Action.HIT : Action.MISS;
+            hit = Array.Exists(correctNotes, note => note.noteInfo.midi == 69) ? Action.HIT : Action.MISS;
         }
         Debug.Log(hit);
         return hit;

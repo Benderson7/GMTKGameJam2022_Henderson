@@ -5,6 +5,8 @@ using UnityEngine;
 public class NoteBlock : MonoBehaviour
 {
     public float speed;
+    public Note noteInfo;
+
     // Update is called once per frame
     void Update()
     {

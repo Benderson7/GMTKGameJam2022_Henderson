@@ -9,4 +9,6 @@ public struct Note
     public double time;
     
     public override string ToString() => $"<Note: midi({midi}), time({time})>";
+
+    public bool hasSpawned;
 }
