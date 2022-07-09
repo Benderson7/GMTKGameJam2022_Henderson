@@ -13,6 +13,13 @@ public class SongManager : MonoBehaviour
     public TimeClock timeClock;
     public double preHitSpawnTime;
 
+    void Start()
+    {
+        NoteMap map = NoteMap.CreateFromJSON(jsonFile.text);
+        timeClock.totalTime = map.duration;
+        notes = map.notes;
+    }
+
     void Update()
     {
         if (timeClock.started)

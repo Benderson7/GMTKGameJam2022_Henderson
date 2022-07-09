@@ -13,6 +13,8 @@ public class TimeClock : MonoBehaviour
 
     public TimeSpan timeElapsed { get; private set; }
 
+    public double totalTime;
+
     void Update()
     {
         if (started)

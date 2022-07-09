@@ -8,8 +8,10 @@ public class GameplayManager : MonoBehaviour
     public SongManager songManager;
     public TimeClock timeClock;
     public AudioSource song;
+    public TimeProgress progress;
     void Update()
     {
+        progress.UpdateProgress();
         if (Input.anyKeyDown) {
             if (timeClock.started)
             {
