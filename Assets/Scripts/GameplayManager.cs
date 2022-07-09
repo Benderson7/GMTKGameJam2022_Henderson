@@ -9,6 +9,7 @@ public class GameplayManager : MonoBehaviour
     public TimeClock timeClock;
     public AudioSource song;
     public TimeProgress progress;
+    public SanityManager sanity;
     void Update()
     {
         progress.UpdateProgress();
@@ -19,6 +20,10 @@ public class GameplayManager : MonoBehaviour
                 NoteBlock[] notes = songManager.GetNoteBlocks(note => songManager.CloseEnough(note.noteInfo.time, curTime));
                 ActionManager.Action hit = ActionManager.Hit(notes);
                 scoreboardManager.UpdateScoreboard(hit);
+                if(hit == ActionManager.Action.MISS)
+                {
+                    sanity.DamnSanity();
+                }
             } else if (Input.GetKey(KeyCode.Space))
             {
                 timeClock.StartClock();
