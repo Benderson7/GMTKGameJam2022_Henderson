@@ -868,6 +868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Credits: {fileID: 210768448}
   Main: {fileID: 1352062217}
+  TitleImage: {fileID: 0}
 --- !u!4 &1100997309
 Transform:
   m_ObjectHideFlags: 0
@@ -1306,7 +1307,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -5, y: -2.3789673}
-  m_SizeDelta: {x: 1152, y: 647.4}
+  m_SizeDelta: {x: 1152, y: 648}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1352062219
 MonoBehaviour:
