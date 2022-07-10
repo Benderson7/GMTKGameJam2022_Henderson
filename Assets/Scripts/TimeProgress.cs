@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TimeProgress : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class TimeProgress : MonoBehaviour
         FULL
     }
     public List<Sprite> meterStates;
+    public string SceneName;
     public TimeClock timeClock;
     private State state;
 
@@ -52,6 +54,8 @@ public class TimeProgress : MonoBehaviour
             this.GetComponent<SpriteRenderer>().sprite = meterStates[indexOfNextSprite];
             state = nextState;
         }
+        if(currentRatio > 1.0f)
+            SceneManager.LoadScene(SceneName);
         // this.transform.GetChild(0).GetComponent<Image>().fillAmount = (float) ((float)timeClock.timeElapsed.Seconds / timeClock.totalTime);
     }
 }
