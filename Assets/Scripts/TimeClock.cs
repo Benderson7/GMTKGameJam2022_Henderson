@@ -32,7 +32,7 @@ public class TimeClock : MonoBehaviour
         } else
         {
             timeElapsed = DateTime.Now.Subtract(timeStarted);
-            timeClock.text = timeElapsed.ToString("mm\\:ss\\:ff"); // UI
+            //timeClock.text = timeElapsed.ToString("mm\\:ss\\:ff"); // UI
             return timeElapsed.TotalSeconds;
         }
     }
