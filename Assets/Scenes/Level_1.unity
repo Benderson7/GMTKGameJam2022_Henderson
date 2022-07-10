@@ -1018,7 +1018,7 @@ MonoBehaviour:
   song: {fileID: 33793516}
   progress: {fileID: 1610914467}
   hitBuffer: 0.2
-  postUnhitDespawnTime: 0.3
+  postUnhitDespawnTime: 2
   bpm: 107
 --- !u!4 &1085760414
 Transform:
@@ -1067,7 +1067,7 @@ MonoBehaviour:
   jsonFile: {fileID: 4900000, guid: d2401b50cfdfd244a9ce603e6494a0ea, type: 3}
   doublePrecision: 0.01
   noteBlock: {fileID: 4678346581408628856, guid: aea35906e725b674cb4692ef1a3b835f, type: 3}
-  preHitSpawnTime: 0.73
+  preHitSpawnTime: 0.8
   timeClock: {fileID: 93202759}
 --- !u!4 &1101323502
 Transform:
@@ -1198,7 +1198,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.06, y: 0.14}
   m_SizeDelta: {x: 19.2, y: 10.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1256114989
