@@ -12,11 +12,13 @@ public class MenuScript : MonoBehaviour
 
     public void StartGame()
     {
+        Debug.Log("start game");
         SceneManager.LoadScene("Level_1");
     }
 
     public void ShowCredits()
     {
+        Debug.Log("show credits");
         Credits.SetActive(true);
         Main.SetActive(false);
     }
@@ -29,6 +31,7 @@ public class MenuScript : MonoBehaviour
 
     public void ExitGame()
     {
+        Debug.Log("exit game");
         Application.Quit();
     }
 }
