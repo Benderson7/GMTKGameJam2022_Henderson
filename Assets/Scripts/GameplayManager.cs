@@ -16,6 +16,8 @@ public class GameplayManager : MonoBehaviour
     public TimeClock timeClock;
     public AudioSource song;
     public TimeProgress progress;
+    public DialogueManager dialogue;
+    public GameObject GameUI;
     public double hitBuffer;
     public double postUnhitDespawnTime;
     public double bpm;
@@ -49,9 +51,13 @@ public class GameplayManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            state = State.IN_PROGRESS;
-            timeClock.StartClock();
-            song.Play();
+            if(!dialogue.AdvanceDialogue())
+            {
+                GameUI.SetActive(true);
+                state = State.IN_PROGRESS;
+                timeClock.StartClock();
+                song.Play();
+            }
         }
     }
 
