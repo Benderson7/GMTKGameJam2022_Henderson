@@ -8,16 +8,18 @@ public class ScoreboardManager : MonoBehaviour
 {
     int hitsCount, missesCount = 0;
     public TMP_Text hitsText, missesText;
+    public SanityManager sanity;
 
-    public void UpdateScoreboard(ActionManager.Action hit)
+    public void UpdateScoreboard(Action hit)
     {
         switch (hit)
         {
-            case ActionManager.Action.HIT:
+            case Action.HIT:
                 hitsCount++;
                 break;
-            case ActionManager.Action.MISS:
+            case Action.MISS:
                 missesCount++;
+                sanity.DamnSanity();
                 break;
             default:
                 break;
