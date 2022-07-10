@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SanityManager : MonoBehaviour
 {
@@ -51,6 +52,9 @@ public class SanityManager : MonoBehaviour
         sanityMeter = Mathf.Floor(sanityMeter - 1);
         int index = (int)Mathf.Floor(sanityMeter) - 1 > 0 ? (int)Mathf.Floor(sanityMeter) - 1 : 0;
         this.GetComponent<SpriteRenderer>().sprite = meterStates[index];
+
+        if((int)Mathf.Floor(sanityMeter) - 1 <= 0)
+            SceneManager.LoadScene("GOScene");
     }
 
     public bool Insane()
