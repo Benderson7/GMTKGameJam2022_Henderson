@@ -31,18 +31,10 @@ public class SongManager : MonoBehaviour
         notes = map.notes;
     }
 
-    public List<NoteBlock> SpawnBlocks(double timeElapsed)
+    public List<NoteBlock> SpawnBlocks(double timeElapsed, double bpm)
     {
-        Note[] notesToSpawn = GetNotes(note => AlmostEqual(note.time - preHitSpawnTime, timeElapsed) && !spawnedNotes.Contains(note));
+        Note[] notesToSpawn = GetNotes(note => AlmostEqual((note.time - preHitSpawnTime) / bpm * 120, timeElapsed) && !spawnedNotes.Contains(note));
         return notesToSpawn.Select(note => Spawn(note)).ToList();
-    }
-
-    private NoteBlock Spawn(Note note)
-    {
-        noteBlock.keyCode = midiToKeyCodes[note.midi];
-        noteBlock.time = note.time;
-        spawnedNotes.Add(note);
-        return Instantiate(noteBlock, midiToPositions[note.midi], Quaternion.identity);
     }
 
     public Note[] GetNotes(Predicate<Note> predicate)
@@ -53,5 +45,13 @@ public class SongManager : MonoBehaviour
     public bool AlmostEqual(double value1, double value2)
     {
         return Math.Abs(value1 - value2) < doublePrecision; 
+    }
+    
+    private NoteBlock Spawn(Note note)
+    {
+        noteBlock.keyCode = midiToKeyCodes[note.midi];
+        noteBlock.time = note.time;
+        spawnedNotes.Add(note);
+        return Instantiate(noteBlock, midiToPositions[note.midi], Quaternion.identity);
     }
 }
