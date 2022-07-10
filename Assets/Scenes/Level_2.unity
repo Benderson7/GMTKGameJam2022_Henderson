@@ -674,8 +674,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dialogue:
-  - Lol I'm Dialogue 2
-  - Lol I'm Dialogue 3
+  - 'Long Leaper:  It is anointed with the proper slimes and oozes.  '
+  - "Big Froggo: Now\u2026 "
+  - 'Long Leaper: The Great Reed Beetle must be prepared. '
+  - 'PREPARE THE SACRIFICE '
 --- !u!114 &354169539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,10 +698,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Big Froggo:
-
-
-    I am saying serious nuts rn man '
+  m_text: "Big Froggo:\r\nThe Altar\u2026\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aa34db3f2f5a7fc47bbb7b61329d20bd, type: 2}
   m_sharedMaterial: {fileID: -3717042404690499878, guid: aa34db3f2f5a7fc47bbb7b61329d20bd, type: 2}
@@ -710,7 +709,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
+  m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
@@ -1810,6 +1809,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 15b9e29863d007a418e9bb2426d8855b, type: 3}
   - {fileID: 21300000, guid: 309010e0ae5fbcd4ab8714fd6872c629, type: 3}
   - {fileID: 21300000, guid: b26cdbdcff095d24895343a63633b8f2, type: 3}
+  SceneName: 
   timeClock: {fileID: 93202759}
 --- !u!212 &1610914468
 SpriteRenderer:

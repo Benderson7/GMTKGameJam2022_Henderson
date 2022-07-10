@@ -674,8 +674,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dialogue:
-  - Lol I'm Dialogue 2
-  - Lol I'm Dialogue 3
+  - "The ritual to summon The Master of the Swamp is happening today, and you need
+    to help the elder members complete the rite. You aren\u2019t so sure about this\u2026"
+  - ...
+  - 'Big Froggo: The day has arrived.'
+  - 'Long Leaper: The Bogmaster will bless us with his bogsome power. '
+  - "Big Froggo: Little Tadling\u2026 let us prepare the altar.  "
+  - PREPARE THE ALTAR
 --- !u!114 &354169539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,10 +701,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Big Froggo:
-
-
-    I am saying serious nuts rn man '
+  m_text: "You are a new member of The Golden Lilypad, and you\u2019ve joined at
+    just the right time. "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aa34db3f2f5a7fc47bbb7b61329d20bd, type: 2}
   m_sharedMaterial: {fileID: -3717042404690499878, guid: aa34db3f2f5a7fc47bbb7b61329d20bd, type: 2}
