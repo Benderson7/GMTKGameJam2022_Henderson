@@ -18,6 +18,7 @@ public class GameplayManager : MonoBehaviour
     public TimeProgress progress;
     public double hitBuffer;
     public double postUnhitDespawnTime;
+    public double bpm;
 
     private State state;
     private List<NoteBlock> currentNoteBlocks = new();
@@ -58,7 +59,7 @@ public class GameplayManager : MonoBehaviour
     {
         double timeElapsed = timeClock.Advance();
         progress.UpdateProgress();
-        currentNoteBlocks = currentNoteBlocks.Concat(songManager.SpawnBlocks(timeElapsed)).ToList();
+        currentNoteBlocks = currentNoteBlocks.Concat(songManager.SpawnBlocks(timeElapsed, bpm)).ToList();
         Action hit = HitNotes(timeElapsed);
         scoreboardManager.UpdateScoreboard(hit);
         int unhits = CountUnhits(timeElapsed);
@@ -110,13 +111,13 @@ public class GameplayManager : MonoBehaviour
 
     private List<NoteBlock> HittableNoteBlocks(double timeElapsed)
     {
-        return currentNoteBlocks.FindAll(noteBlock => noteBlock.time < timeElapsed + hitBuffer && noteBlock.time > timeElapsed - hitBuffer);
+        return currentNoteBlocks.FindAll(noteBlock => noteBlock.time / bpm * 120 < timeElapsed + hitBuffer && noteBlock.time / bpm * 120 > timeElapsed - hitBuffer);
     }
 
     private int CountUnhits(double timeElapsed)
     {
         int count = 0;
-        List<NoteBlock> unhitNotes = currentNoteBlocks.FindAll(noteBlock => noteBlock.time + postUnhitDespawnTime < timeElapsed);
+        List<NoteBlock> unhitNotes = currentNoteBlocks.FindAll(noteBlock => (noteBlock.time + postUnhitDespawnTime) / bpm * 120 < timeElapsed);
         foreach (NoteBlock noteBlock in unhitNotes)
         {
             count++;
