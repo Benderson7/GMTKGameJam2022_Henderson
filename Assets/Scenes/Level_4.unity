@@ -218,7 +218,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4fe2f2177d12d8047831c304d5e5f2d8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 00372c5bbd68a0f49bc01964c11ee00e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -675,9 +675,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dialogue:
   - "Long Leaper: It hides\u2026"
-  - "Big Froggo: The Ritual\u2026 "
-  - 'Long Leaper: Must Commence. '
-  - 'SUMMON THE BOGMASTER '
+  - "Long Leaper: The Bogmaster\u2026  "
+  - 'Big Froggo: We must try to control it! '
+  - 'Long Leaper: Control the Bogmaster!'
+  - IT IS MUCH TOO LATE
 --- !u!114 &354169539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -698,7 +699,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Big Froggo:\r\nThe Writhing Sun\u2026\r\n"
+  m_text: "Big Froggo:\r\nOh no\u2026\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aa34db3f2f5a7fc47bbb7b61329d20bd, type: 2}
   m_sharedMaterial: {fileID: -3717042404690499878, guid: aa34db3f2f5a7fc47bbb7b61329d20bd, type: 2}

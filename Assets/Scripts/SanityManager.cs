@@ -53,10 +53,9 @@ public class SanityManager : MonoBehaviour
         int index = (int)Mathf.Floor(sanityMeter) - 1 > 0 ? (int)Mathf.Floor(sanityMeter) - 1 : 0;
         this.GetComponent<SpriteRenderer>().sprite = meterStates[index];
 
-        if((int)Mathf.Floor(sanityMeter) - 1 <= 0)
-            SceneManager.LoadScene("GOScene");
+       // if((int)Mathf.Floor(sanityMeter) - 1 <= 0)
+       //     SceneManager.LoadScene("GOScene");
     }
-
     public bool Insane()
     {
         return sanityMeter < 0;
